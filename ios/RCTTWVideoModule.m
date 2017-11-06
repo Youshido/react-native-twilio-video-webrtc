@@ -68,6 +68,8 @@ RCT_EXPORT_MODULE();
 }
 
 - (void)addLocalView:(TVIVideoView *)view {
+  if (nil == self.localVideoTrack) [self startLocalVideo:NO];
+  
   [self.localVideoTrack addRenderer:view];
   if (self.camera && self.camera.source == TVICameraCaptureSourceBackCameraWide) {
     view.mirror = NO;
@@ -98,6 +100,8 @@ RCT_EXPORT_MODULE();
 }
 
 RCT_EXPORT_METHOD(startLocalVideo:(BOOL)screenShare) {
+  if (nil != self.localVideoTrack) return;
+  
   if (screenShare) {
     UIViewController *rootViewController = [UIApplication sharedApplication].delegate.window.rootViewController;
     self.screen = [[TVIScreenCapturer alloc] initWithView:rootViewController.view];

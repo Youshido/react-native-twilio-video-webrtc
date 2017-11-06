@@ -6,7 +6,7 @@
 //
 //
 
-#import "UIView+React.h"
+#import <React/UIView+React.h>
 
 #import <React/RCTViewManager.h>
 
